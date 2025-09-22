@@ -25,18 +25,17 @@ h2 {
 }
 
 #hasil {
-  margin-top: 15px;    /* Jarak antara box dan hasil */
-  max-width: 300px;    /* Lebarnya mengikuti kotak */
-  text-align: center;  /* Teks di tengah */
+  margin-top: 15px;  
+  max-width: 300px;  
+  text-align: center;  
 }
 
-/* Gaya hasil */
 .result {
   padding: 10px;
   border-radius: 5px;
   font-size: 14px;
   word-wrap: break-word;
-  background: #e8f5e9;  /* Contoh warna */
+  background: #e8f5e9; 
   border: 1px solid #2e7d32;
   color: #2e7d32;
 }
@@ -64,4 +63,5 @@ button {
 
 button:hover {
     background: #2e7d32;
+
 }
