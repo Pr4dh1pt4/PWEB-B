@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <style>
+    body {
+        background-color: blue;
+        font-family: Arial, sans-serif;
+        display: flex; 
+        justify-content: center;
+        align-items: center;
+        height: 100vh; 
+        margin:0;
+    }
+
+    .main {
+        background-color: white; 
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        padding: 20px; 
+        width: 500px; 
+        position: relative;
+    }
+
+    h2 { 
+        color: black;
+        text-align: center; 
+    }
+
+    label { 
+        color:black; 
+        font-weight:bold; 
+        display:block; 
+        margin:5px 0;
+    }
+
+    input,select {
+        width:100%; 
+        padding:10px; 
+        margin-bottom:5px; 
+        box-sizing: border-box;
+        border:1px solid black; 
+        border-radius:5px;
+        }
+
+    .error {
+        color: #ff8080; font-size: 13px; margin-bottom: 10px;
+        display:none;
+    }
+
+    #suggestions {
+        list-style:none; 
+        padding:0; 
+        margin:0;
+        background:white; 
+        border:1px solid #ccc;
+        position:absolute; 
+        max-width:460px; 
+        z-index:1000;
+    }
+
+    #suggestions li {
+        padding:8px; 
+        cursor:pointer;
+    }
+
+    #suggestions li:hover {
+        background:#eee;
+    }
+
+    button {
+      width:100%;
+      padding:15px; 
+      background:blue; 
+      color:white;
+      border:none; 
+      border-radius:10px; 
+      cursor:pointer; 
+      font-size:16px;
+      margin-top: 15px;
+    }
+
+    button:hover {
+        background:green; 
+        transition:.5s;
+    }
+    
+  </style>
+</head>
+<body>
+<div class="main">
+  <h2>Registration Form</h2>
+  <form id="regForm" novalidate>
+    <label for="first">Nama</label>
+    <input type="text" id="first" name="first" placeholder="Ketik nama..." autocomplete="off">
+    <div id="nameErr" class="error">Nama minimal 3 huruf</div>
+    <ul id="suggestions"></ul>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email">
+    <div id="emailErr" class="error">Format email tidak valid</div>
+
+    <label for="NRP">NRP</label>
+    <input type="text" id="NRP" name="nrp">
+    <div id="nrpErr" class="error">NRP harus 10 digit angka</div>
+
+    <label for="gender">Mata Kuliah</label>
+    <select id="gender" name="gender">
+      <option value="">--Pilih Mata Kuliah--</option>
+      <option value="PWEB">Pemrograman Web</option>
+      <option value="KKA">Konsep Kecerdasan Artifisial</option>
+      <option value="TG">Teori Graf</option>
+      <option value="Jarkom">Jaringan Komputer</option>
+      <option value="Matdis">Matematika Diskrit</option>
+    </select>
+    <div id="genderErr" class="error">Silakan pilih mata kuliah</div>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
+
+<script>
+  const names = ["Andi","Budi","Citra","Dewi","Eka","Fajar","Galih","Hana","Indra","Joko","Kelvin","Kayla","Kei","Lina","Luna","Mamat","Matthew","Maman","Nabil","Naufal","Nina","Obi","Oki","Pradhipta","Quinzel","Queen","Rafi","Rais","Ryan","Salma","Silvi","Sabil","Tono","Tami","Ulil","Vazel","Wawan","Wati","Xavier","Yanti","Yanto","Yono","Zharif","Zaki"];
+
+  const input = document.getElementById('first');
+  const suggestions = document.getElementById('suggestions');
+
+  input.addEventListener('input', () => {
+    const query = input.value.toLowerCase();
+    suggestions.innerHTML = '';
+    if (!query) return;
+    const filtered = names.filter(name => name.toLowerCase().startsWith(query));
+    filtered.forEach(name => {
+      const li = document.createElement('li');
+      li.textContent = name;
+      li.onclick = () => {
+        input.value = name;
+        suggestions.innerHTML = '';
+      };
+      suggestions.appendChild(li);
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.main')) suggestions.innerHTML = '';
+  });
+
+  const form = document.getElementById('regForm');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
+
+    // reset error
+    document.querySelectorAll('.error').forEach(el => el.style.display='none');
+
+    // Nama
+    if (input.value.trim().length < 3) {
+      document.getElementById('nameErr').style.display='block';
+      valid = false;
+    }
+
+    // Email
+    const email = document.getElementById('email').value.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      document.getElementById('emailErr').style.display='block';
+      valid = false;
+    }
+
+    // NRP
+    const nrp = document.getElementById('NRP').value.trim();
+    if (!/^\d{10}$/.test(nrp)) {
+      document.getElementById('nrpErr').style.display='block';
+      valid = false;
+    }
+
+    // Mata kuliah
+    if (document.getElementById('gender').value === "") {
+      document.getElementById('genderErr').style.display='block';
+      valid = false;
+    }
+
+    if (valid) {
+      alert(`Form berhasil dikirim!\nNama: ${input.value}\nEmail: ${email}\nNRP: ${nrp}`);
+      form.reset();
+      suggestions.innerHTML = '';
+    }
+  });
+</script>
+</body>
+</html>
