@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="main">
+        <h3 class="h3">Toko Elektronik</h3>
+        
+        <label for="produk">Jenis Produk</label>
+        <select id="produk" onChange="SelectCat2();" >
+            <option value="">Pilih Jenis Produk</option>
+            <option value="Desktop">Desktop</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Smartphone">Smartphone</option>
+        </select>
+
+        <label for="merk">Merk</label>
+        <select id="merk">
+            <option value="">Pilih Merk</option>
+        </select>
+
+        <button onclick="submitPilihan()">Pilih</button>
+
+        <div class="result" id="hasil"></div>
+    
+    </div>
+
+    <script>
+     function SelectCat2(){
+      const produk = document.getElementById("produk").value;
+      const merkSelect = document.getElementById("merk");
+
+      merkSelect.innerHTML = '<option value="">Pilih Merk</option>';
+
+      let options = [];
+      if (produk === "Desktop") {
+        options = ["Acer", "Dell", "Lenovo"];
+      } else if (produk === "Laptop") {
+        options = ["Asus", "Acer", "Sony Vaio"];
+      } else if (produk === "Smartphone") {
+        options = ["Samsung", "LG", "Sony Xperia"];
+      }
+
+      options.forEach(m => {
+        const opt = document.createElement("option");
+        opt.value = m;
+        opt.textContent = m;
+        merkSelect.appendChild(opt);
+      });
+    }
+
+        function submitPilihan() {
+            const produk = document.getElementById("produk").value;
+            const merk = document.getElementById("merk").value;
+            const hasil = document.getElementById("hasil");
+
+            hasil.className = "result";
+
+            if (!produk) {
+                hasil.textContent = "⚠️ Silakan pilih jenis produk terlebih dahulu!";
+                hasil.classList.add("error");
+                return;
+            }
+            if (!merk) {
+                hasil.textContent = "⚠️ Silakan pilih merk produk terlebih dahulu!";
+                hasil.classList.add("error");
+                return;
+            }
+
+            hasil.textContent = "✅ Anda memilih: " + produk.charAt(0).toUpperCase() + produk.slice(1) + " - " + merk.charAt(0).toUpperCase() + merk.slice(1);
+            hasil.classList.add("success");
+        }
+    </script>
+</body>
+</html>
