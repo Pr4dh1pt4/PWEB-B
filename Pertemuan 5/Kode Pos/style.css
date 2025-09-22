@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('image.png') no-repeat center center/cover;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    margin:0;
+}
+
+h2 {
+    color: white;
+    text-align: center;
+}
+
+.form-container {
+    background: black;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+#hasil {
+  margin-top: 15px;    /* Jarak antara box dan hasil */
+  max-width: 300px;    /* Lebarnya mengikuti kotak */
+  text-align: center;  /* Teks di tengah */
+}
+
+/* Gaya hasil */
+.result {
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  word-wrap: break-word;
+  background: #e8f5e9;  /* Contoh warna */
+  border: 1px solid #2e7d32;
+  color: #2e7d32;
+}
+
+label {
+    color: white; 
+    font-weight: bold; 
+}
+
+select, input, button {
+    padding: 10px;
+    margin: 8px 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+button {
+    background: #43a047;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2e7d32;
+}
