@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+            background-image: url('bg.jpg'); 
+            background-size: cover;                 
+            background-position: center;             
+            background-repeat: no-repeat;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+            padding: 0 20px;
+        }
+
+        .main {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 500px;
+        }
+
+        .main h2 {
+            color: black;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: black;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            background-color: green;
+            color: white;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            
+        }
+
+        button:hover {
+            background-color: rgb(94, 144, 19);
+            transition: 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+    <div class="main">
+        <h2>Pemesanan Tiket</h2>
+        <form action="">
+            <label for="first">Nama</label>
+            <input type="text" id="first" name="first" required />
+
+            <label for="Email">Email</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="mobile">Contact</label>
+            <input type="text" id="mobile" name="mobile" maxlength="10" required />
+
+            <label for="gender">Tanggal</label>
+            <select id="date" name="date" required></select>
+
+            <script>
+                const select = document.getElementById("date");
+                const now = new Date();
+
+                for (let i = 0; i < 7; i++) {
+                const dateObj = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+
+                const formatted = dateObj.toLocaleDateString('id-ID', {
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+                });
+
+                const option = document.createElement("option");
+                option.value = dateObj.toISOString().split('T')[0]; 
+                option.textContent = formatted;                    
+                select.appendChild(option);
+                }
+            </script>
+
+            <button type="submit">
+                    Pesan
+            </button>
+
+        </form>    
+    </div>
+    </div>
+</body>
+</html>
