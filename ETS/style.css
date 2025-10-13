@@ -1,0 +1,79 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+}
+.navbar {
+    background-color: #007bff;
+}
+.navbar-brand img {
+    height: 45px;
+}
+.hero {
+    background-color: #007bff;
+    color: #fff;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.hero .btn {
+    background-color: #FF6F61;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 28px;
+    font-weight: bold;
+}
+
+.hero .btn:hover {
+    background-color: #e55c50;
+}
+
+h2.section-title {
+    color: #FF6F61;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.benefit-icon {
+    font-size: 2.5em;
+    color: #4CAF50;
+    margin-bottom: 15px;
+}
+
+.testimonial-card {
+    border-left: 5px solid #007bff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.product-card img {
+    height: 150px;
+    object-fit: contain;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer a {
+    color: #4CAF50;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    color: #FF6F61;
+}
+
+.social-icons i {
+    color: white;
+    font-size: 1.8em;
+    margin: 0 8px;
+    transition: color 0.3s;
+}
+
+.social-icons i:hover {
+    color: #FF6F61;
+}
