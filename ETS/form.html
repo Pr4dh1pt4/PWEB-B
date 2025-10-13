@@ -31,7 +31,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top shadow-sm">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="Assets/toys.png" alt="Logo Ceria Mainan Surabaya">
+        <img src="Assets/toys.png" alt="Logo">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -119,7 +119,25 @@
     </div>
   </footer>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.querySelector('form');
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const alertBox = document.createElement('div');
+        alertBox.className = 'alert alert-success mt-3';
+        alertBox.textContent = '✅ Pemesanan berhasil dikirim! Tim kami akan segera menghubungi Anda.';
+        form.appendChild(alertBox);
+
+        form.reset();
+
+        setTimeout(() => {
+          alertBox.remove();
+        }, 3000);
+      });
+    });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
