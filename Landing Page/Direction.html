@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Monkasel</title>
+  <title>Monkasel – Direction</title>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+
   <style>
     * {
       margin: 0;
@@ -14,6 +17,7 @@
     body {
       font-family: Arial, sans-serif;
       color: #fff;
+      background: #071529;
     }
 
     .navbar {
@@ -53,12 +57,32 @@
 
     .hero {
       height: 100vh;
-      background: url('maps.png') no-repeat center center/cover;
+      background: url('/assets/maps.png') no-repeat center center/cover;
       position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 350px;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 0%,
+        rgba(7,21,41,0.15) 25%,
+        rgba(7,21,41,0.35) 45%,
+        rgba(7,21,41,0.55) 65%,
+        rgba(7,21,41,0.75) 85%,
+        #071529 100%
+      );
+      pointer-events: none;
     }
 
     .overlay {
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.45);
       height: 100%;
       width: 100%;
       display: flex;
@@ -69,55 +93,46 @@
     }
 
     .hero-content {
-      max-width: 600px;
-    }
-
-    .price-tag {
-      background-color: #2dd4bf;
-      padding: 5px 15px;
-      border-radius: 20px;
-      font-weight: bold;
-      display: inline-block;
-      margin-bottom: 15px;
-    }
-
-    .subheading {
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-    }
-
-    .hero-content h1 {
-      font-size: 56px;
+      font-size: 20px;
       font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 20px;
-    }
-
-    .hero-content .highlight {
-      color: #2dd4bf;
-    }
-
-    .description {
-      font-size: 16px;
-      margin-bottom: 30px;
+      max-width: 600px;
+      position: relative;
     }
 
     .btn {
       background-color: #2dd4bf;
-      color: #fff;
+      color: black;
       padding: 12px 25px;
       text-decoration: none;
       border-radius: 30px;
       font-weight: bold;
       transition: background-color 0.3s;
+      display: inline-block;
     }
 
     .btn:hover {
       background-color: #1ea29a;
     }
 
-    /* Responsive */
+    .history-section {
+      padding: 80px 40px;
+      max-width: 1000px;
+      margin: auto;
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    .history-section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #2dd4bf;
+      text-align: center;
+    }
+
+    .history-section p {
+      margin-bottom: 20px;
+    }
+
     @media (max-width: 768px) {
       .hero-content h1 {
         font-size: 40px;
@@ -128,29 +143,50 @@
     }
   </style>
 </head>
+
 <body>
-  <!-- Navbar -->
-  <header class="navbar">
+  <header class="navbar" data-aos="fade-down" data-aos-duration="1000">
     <div class="logo">MONKASEL</div>
     <nav>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Us</a></li>
-        <li><a href="#">Direction</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="direction.html">Direction</a></li>
+        <li><a href="ticket.html">Tickets</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="overlay">
       <div class="hero-content">
-        <h1>NGGAK PERLU<br><span class="highlight">TAKUT TERSESAT !</span></h1>
-        <p class="subheading">Ikuti Petunjuk Arahnya Aja !</p><br>
-        <a href="https://www.google.com/maps/place/Monumen+Kapal+Selam+Surabaya/@-7.2655447,112.7477054,17z/data=!3m1!4b1!4m6!3m5!1s0x2dd7f9628df520e5:0x577443720136fb0b!8m2!3d-7.2655447!4d112.7502803!16s%2Fg%2F121_5bz_?entry=ttu&g_ep=EgoyMDI1MDkxNy4wIKXMDSoASAFQAw%3D%3D" class="btn">MAPS</a>
+
+        <h1 data-aos="fade-up" data-aos-duration="1000">
+          NGGAK PERLU<br><span class="subheading" style="color:#2dd4bf;">TAKUT TERSESAT !</span>
+        </h1>
+
+        <p class="subheading" style="letter-spacing:2px;"
+           data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
+          Ikuti Petunjuk Arahnya Aja !
+        </p><br>
+
+        <a href="https://www.google.com/maps/place/Monumen+Kapal+Selam+Surabaya/"
+           target="_blank"
+           class="btn"
+           data-aos="zoom-in"
+           data-aos-delay="600"
+           data-aos-duration="800">
+          MAPS
+        </a>
+
       </div>
     </div>
   </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
 </body>
 </html>
