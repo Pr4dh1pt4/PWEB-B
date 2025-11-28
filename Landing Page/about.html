@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Monkasel</title>
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
   <style>
     * {
       margin: 0;
@@ -11,9 +14,16 @@
       box-sizing: border-box;
     }
 
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+
     body {
       font-family: Arial, sans-serif;
       color: #fff;
+      background-color: #0f172a;
+      overflow-x: hidden;
     }
 
     .navbar {
@@ -51,10 +61,65 @@
       color: #2dd4bf;
     }
 
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .hamburger div {
+      width: 28px;
+      height: 3px;
+      background: #fff;
+      border-radius: 5px;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      right: 40px;
+      background: #1e293b;
+      padding: 15px;
+      border-radius: 10px;
+      width: 150px;
+    }
+
+    .mobile-menu a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      padding: 10px 0;
+    }
+
+    .mobile-menu a:hover {
+      color: #2dd4bf;
+    }
+
     .hero {
       height: 100vh;
-      background: url('monkasel3.jpg') no-repeat center center/cover;
+      background: url('/assets/monkasel3.jpg') no-repeat center center/cover;
       position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 350px;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 0%,
+        rgba(7,21,41,0.15) 25%,
+        rgba(7,21,41,0.35) 45%,
+        rgba(7,21,41,0.55) 65%,
+        rgba(7,21,41,0.75) 85%,
+        #071529 100%
+      );
     }
 
     .overlay {
@@ -64,27 +129,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: left;
       padding: 0 20px;
     }
 
     .hero-content {
       max-width: 600px;
-    }
-
-    .price-tag {
-      background-color: #2dd4bf;
-      padding: 5px 15px;
-      border-radius: 20px;
-      font-weight: bold;
-      display: inline-block;
-      margin-bottom: 15px;
-    }
-
-    .subheading {
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
     }
 
     .hero-content h1 {
@@ -94,68 +143,207 @@
       margin-bottom: 20px;
     }
 
-    .hero-content .highlight {
+    .highlight {
       color: #2dd4bf;
     }
 
     .description {
       font-size: 16px;
       margin-bottom: 30px;
+      line-height: 1.6;
     }
 
-    .btn {
-      background-color: #2dd4bf;
-      color: #fff;
-      padding: 12px 25px;
-      text-decoration: none;
-      border-radius: 30px;
-      font-weight: bold;
-      transition: background-color 0.3s;
+    .info-section {
+      padding: 60px 20px;
+      text-align: center;
     }
 
-    .btn:hover {
-      background-color: #1ea29a;
+    .info-section h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #2dd4bf;
     }
 
-    /* Responsive */
+    .info-grid {
+      max-width: 1000px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .info-box {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: left;
+    }
+
+    .info-box h3 {
+      color: #2dd4bf;
+      margin-bottom: 10px;
+    }
+
+    .gallery-section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .gallery-section h2 {
+      font-size: 36px;
+      color: #2dd4bf;
+      margin-bottom: 20px;
+    }
+
+    .gallery-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 15px;
+      object-fit: cover;
+      height: 220px;
+      transition: transform 0.3s;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+    }
+
+    .footer {
+      background-color: #1e293b;
+      padding: 30px;
+      text-align: center;
+      color: #ccc;
+      margin-top: 40px;
+    }
+
+    .footer p {
+      font-size: 14px;
+    }
+
     @media (max-width: 768px) {
-      .hero-content h1 {
-        font-size: 40px;
-      }
       .nav-links {
         display: none;
+      }
+      .hamburger {
+        display: flex;
       }
     }
   </style>
 </head>
+
 <body>
-  <!-- Navbar -->
-  <header class="navbar">
+  <header class="navbar" data-aos="fade-down" data-aos-duration="1200">
     <div class="logo">MONKASEL</div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="Direction.html">Direction</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="Direction.html">Direction</a></li>
+      <li><a href="ticket.html">Tickets</a></li>
+    </ul>
+
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">Home</a>
+      <a href="#">About Us</a>
+      <a href="Direction.html">Direction</a>
+      <a href="ticket.html">Tickets</a>
+    </div>
   </header>
 
-    <!-- Content -->
   <section class="hero">
     <div class="overlay">
-      <div class="hero-content">
-        <h1>MONUMEN<br><span class="highlight">KAPAL SELAM</span></h1>
-        <p class="description">
-            Monumen Kapal Selam, atau disingkat Monkasel, adalah sebuah museum kapal selam, dari kapal selam KRI Pasopati 410, salah satu armada Angkatan Laut Republik Indonesia buatan Uni Soviet tahun 1952. Kapal selam ini pernah dilibatkan dalam Pertempuran Laut Aru untuk membebaskan Irian Barat dari pendudukan Belanda.
-            <br>
-            <br>
-
-            Kapal selam ini dibawa ke darat dan dijadikan monumen untuk memperingati keberanian pahlawan Indonesia. Monkasel ini dijadikan salah satu tempat wisata di surabaya yang unik juga edukatif, karena selain interior kapal selam, di sini juga diadakan pemutaran film tentang proses peperangan yang terjadi di Laut Aru.
+      <div class="hero-content" 
+        data-aos="fade-up"
+        data-aos-duration="1500"
+      >
+        <h1 data-aos="zoom-in" data-aos-delay="200">MONUMEN<br><span class="highlight">KAPAL SELAM</span></h1>
+        <p class="description" data-aos="fade-up" data-aos-delay="400">
+          Monumen Kapal Selam atau Monkasel adalah museum kapal selam dari KRI Pasopati 410, kapal selam buatan Uni Soviet yang berperan dalam Pertempuran Laut Aru. Dibangun pada tahun 1995 dan diresmikan pada Juli 1998, monumen ini menjadi simbol sejarah perjuangan TNI AL dan bukti kejayaan armada kapal selam Indonesia pada era Perang Dingin.
         </p>
       </div>
     </div>
   </section>
+
+  <section class="info-section">
+    <h2 data-aos="fade-up">Informasi Monumen Kapal Selam</h2>
+
+    <div class="info-grid">
+
+      <div class="info-box" data-aos="zoom-in" data-aos-delay="100">
+        <h3>📍 Lokasi</h3>
+        <p>Jl. Pemuda No. 39, Genteng, Surabaya — tepat di tepi Sungai Kalimas.</p>
+      </div>
+
+      <div class="info-box" data-aos="zoom-in" data-aos-delay="200">
+        <h3>⏰ Jam Operasional</h3>
+        <p>Buka setiap hari pukul <b>08.00–21.00 WIB</b>.</p>
+      </div>
+
+      <div class="info-box" data-aos="zoom-in" data-aos-delay="300">
+        <h3>🎥 Fasilitas</h3>
+        <p>
+          • Tur interior kapal selam<br>
+          • Film sejarah<br>
+          • Spot foto & jembatan kaca<br>
+          • Taman tepi sungai<br>
+          • Area bermain anak
+        </p>
+      </div>
+
+      <div class="info-box" data-aos="zoom-in" data-aos-delay="400">
+        <h3>💡 Fakta Menarik</h3>
+        <p>
+          • Buatan Uni Soviet (1952)<br>
+          • Panjang 76,6 meter<br>
+          • Whiskey-class submarine<br>
+          • Jadi monumen sejak 1998
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="gallery-section">
+    <h2 data-aos="fade-up">Galeri Monkasel</h2>
+    <div class="gallery-grid">
+      <img src="/assets/gallery1.jpeg" data-aos="zoom-in" data-aos-delay="100">
+      <img src="/assets/gallery2.jpg" data-aos="zoom-in" data-aos-delay="200">
+      <img src="/assets/gallery3.jpg" data-aos="zoom-in" data-aos-delay="300">
+    </div>
+  </section>
+
+  <footer class="footer" data-aos="fade-up">
+    <p>© 2025 Monumen Kapal Selam Surabaya</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: false,
+      duration: 1200
+    });
+  </script>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("mobileMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+  </script>
+
 </body>
 </html>
