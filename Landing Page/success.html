@@ -3,88 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Document</title>
+  <title>Terima Kasih</title>
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
     body {
-        background: url('monkasel2.jpg') no-repeat center center/cover;
-        font-family: Arial, sans-serif;
-        display: flex; 
-        justify-content: center;
-        align-items: center;
-        height: 100vh; 
-        margin:0;
+      background: url('/assets/monkasel2.jpg') no-repeat center center/cover;
+      height: 100vh;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .navbar {
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2dd4bf;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links li a:hover {
+      color: #2dd4bf;
     }
 
     .overlay {
-        background-color: rgba(0, 0, 0, 0.5);
-        height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: left;
-        padding: 0 20px;
+      background: rgba(0, 0, 0, 0.55);
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
 
     .main {
-        background-color: white; 
-        border-radius: 15px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.2);
-        padding: 20px; 
-        width: 500px; 
-        position: relative;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 35px;
+      width: 450px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0,0,0,0.4);
+      backdrop-filter: blur(5px);
     }
 
-    h2 { 
-        margin: 40px;
-        color: black;
-        text-align: center; 
-    }
-    
-    h4 { 
-        color: black;
-        text-align: center; 
+    h2 {
+      margin-bottom: 10px;
+      color: black;
+      font-size: 28px;
     }
 
-    label { 
-        color:black; 
-        font-weight:bold; 
-        display:block; 
-        margin:5px 0;
-    }
-
-    input,select {
-        width:100%; 
-        padding:10px; 
-        margin-bottom:5px; 
-        box-sizing: border-box;
-        border:1px solid black; 
-        border-radius:5px;
-        }
-
-    .error {
-        color: #ff8080; font-size: 13px; margin-bottom: 10px;
-        display:none;
-    }
-
-    #suggestions {
-        list-style:none; 
-        padding:0; 
-        margin:0;
-        background:white; 
-        border:1px solid #ccc;
-        position:absolute; 
-        max-width:460px; 
-        z-index:1000;
-    }
-
-    #suggestions li {
-        padding:8px; 
-        cursor:pointer;
-    }
-
-    #suggestions li:hover {
-        background:#eee;
+    h4 {
+      margin-bottom: 30px;
+      color: black;
+      font-weight: normal;
     }
 
     .btn {
@@ -96,40 +98,51 @@
       font-size: 16px;
       text-decoration: none;
       border-radius: 10px;
-      transition: background-color 0.3s;
+      transition: 0.3s;
+      margin-top: 10px;
     }
 
     .btn:hover {
-      background-color: green
-    }    
-
-    button {
-      width:100%;
-      padding:15px; 
-      background:blue; 
-      color:white;
-      border:none; 
-      border-radius:10px; 
-      cursor:pointer; 
-      font-size:16px;
-      margin-top: 15px;
+      background-color: green;
+      transform: translateY(-3px);
     }
 
-    button:hover {
-        background:green; 
-        transition:.5s;
-    }
-    
   </style>
 </head>
 
 <body>
+  <header class="navbar" data-aos="fade-down" data-aos-duration="1000">
+    <div class="logo">MONKASEL</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="Direction.html">Direction</a></li>
+        <li><a href="tickets.html">Tickets</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <div class="overlay">
-    <div class="main">
-        <h2>Terimakasih Sudah Memesan Tiket Kami</h2>
-        <h4>Mau pesan tiket lagi?</h4>
-        <a href="form.html" class="btn">Pesan Tiket</a>
+    <div class="main" data-aos="zoom-in" data-aos-duration="1200">
+        <h2 data-aos="fade-down" data-aos-duration="900">Terimakasih Sudah Memesan Tiket Kami</h2>
+        <h4 data-aos="fade-up" data-aos-delay="150" data-aos-duration="900">
+          Mau pesan tiket lagi?
+        </h4>
+
+        <a href="form.html" class="btn"
+           data-aos="zoom-in"
+           data-aos-delay="350"
+           data-aos-duration="900">
+          Pesan Tiket
+        </a>
     </div>
   </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+
 </body>
 </html>
