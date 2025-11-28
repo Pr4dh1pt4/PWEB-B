@@ -4,9 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Document</title>
+
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
   <style>
     body {
-        background: url('monkasel2.jpg') no-repeat center center/cover;
+        background: url('/assets/monkasel2.jpg') no-repeat center center/cover;
         font-family: Arial, sans-serif;
         display: flex; 
         justify-content: center;
@@ -29,8 +32,8 @@
     .main {
         background-color: white; 
         border-radius: 15px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.2);
-        padding: 20px; 
+        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        padding: 25px; 
         width: 500px; 
         position: relative;
     }
@@ -38,6 +41,8 @@
     h2 { 
         color: black;
         text-align: center; 
+        margin-top: 0;
+        margin-bottom: 20px;
     }
 
     label { 
@@ -47,17 +52,26 @@
         margin:5px 0;
     }
 
-    input,select {
+    input, select {
         width:100%; 
-        padding:10px; 
-        margin-bottom:5px; 
+        padding:12px; 
+        margin-bottom:10px;
         box-sizing: border-box;
         border:1px solid black; 
         border-radius:5px;
-        }
+        transition: .3s ease;
+    }
+
+    input:focus, select:focus {
+        border-color: dodgerblue;
+        box-shadow: 0 0 5px dodgerblue;
+    }
 
     .error {
-        color: #ff8080; font-size: 13px; margin-bottom: 10px;
+        color: #ff8080; 
+        font-size: 13px; 
+        margin-top: -5px;
+        margin-bottom: 10px;
         display:none;
     }
 
@@ -75,6 +89,7 @@
     #suggestions li {
         padding:8px; 
         cursor:pointer;
+        transition: .2s;
     }
 
     #suggestions li:hover {
@@ -89,44 +104,55 @@
       border:none; 
       border-radius:10px; 
       cursor:pointer; 
-      font-size:16px;
+      font-size:17px;
       margin-top: 15px;
+      transition: .3s ease;
     }
 
     button:hover {
-        background:green; 
-        transition:.5s;
+        background:green;
+        transform: translateY(-2px);
     }
-    
   </style>
 </head>
+
 <body>
-<div class="overlay">
-<div class="main">
-  <h2>Registration Form</h2>
-  <form id="regForm" novalidate>
-    <label for="first">Nama</label>
-    <input type="text" id="first" name="first" placeholder="Ketik nama..." autocomplete="off">
-    <div id="nameErr" class="error">Nama minimal 3 huruf</div>
-    <ul id="suggestions"></ul>
 
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email">
-    <div id="emailErr" class="error">Format email tidak valid</div>
+  <div class="overlay" data-aos="fade-in" data-aos-duration="1200">
+    <div class="main" data-aos="fade-up" data-aos-duration="1200">
+      <h2 data-aos="zoom-in" data-aos-duration="1000">Pemesanan Tiket</h2>
 
-    <label for="NRP">Kontak</label>
-    <input type="text" id="NRP" name="nrp">
-    <div id="nrpErr" class="error">Nomor harus 10-12 digit angka</div>
+      <form id="regForm" novalidate>
 
-    <label for="date">Tanggal</label>
-    <select id="date" name="date"></select>
+        <label for="first">Nama</label>
+        <input type="text" id="first" name="first" placeholder="Ketik nama..." autocomplete="off"
+          data-aos="fade-right" data-aos-duration="900">
+        <div id="nameErr" class="error">Nama minimal 3 huruf</div>
+        <ul id="suggestions"></ul>
 
-    <div id="dateErr" class="error">Silakan pilih mata kuliah</div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email"
+          data-aos="fade-right" data-aos-duration="900" data-aos-delay="100">
+        <div id="emailErr" class="error">Format email tidak valid</div>
 
-    <button type="submit">Submit</button>
-  </form>
-</div>
-</div>
+        <label for="NRP">Kontak</label>
+        <input type="text" id="NRP" name="nrp"
+          data-aos="fade-right" data-aos-duration="900" data-aos-delay="200">
+        <div id="nrpErr" class="error">Nomor harus 10-12 digit angka</div>
+
+        <label for="date">Tanggal</label>
+        <select id="date" name="date"
+          data-aos="fade-right" data-aos-duration="900" data-aos-delay="300"></select>
+        <div id="dateErr" class="error">Silakan pilih tanggal</div>
+
+        <button type="submit" data-aos="fade-up" data-aos-duration="900" data-aos-delay="400">Submit</button>
+
+      </form>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
 
 <script>
   const names = ["Andi","Budi","Citra","Dewi","Eka","Fajar","Galih","Hana","Indra","Joko","Kelvin","Kayla","Kei","Lina","Luna","Mamat","Matthew","Maman","Nabil","Naufal","Nina","Obi","Oki","Pradhipta","Quinzel","Queen","Rafi","Rais","Ryan","Salma","Silvi","Sabil","Tono","Tami","Ulil","Vazel","Wawan","Wati","Xavier","Yanti","Yanto","Yono","Zharif","Zaki"];
@@ -138,7 +164,9 @@
     const query = input.value.toLowerCase();
     suggestions.innerHTML = '';
     if (!query) return;
+
     const filtered = names.filter(name => name.toLowerCase().startsWith(query));
+
     filtered.forEach(name => {
       const li = document.createElement('li');
       li.textContent = name;
@@ -154,38 +182,33 @@
     if (!e.target.closest('.main')) suggestions.innerHTML = '';
   });
 
-  // Tanggal 
-                const select = document.getElementById("date");
-                const now = new Date();
+  const select = document.getElementById("date");
+  const now = new Date();
 
-                for (let i = 0; i < 7; i++) {
-                const dateObj = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+  for (let i = 0; i < 7; i++) {
+    const dateObj = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i);
+    const formatted = dateObj.toLocaleDateString('id-ID', {
+      weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+    });
 
-                const formatted = dateObj.toLocaleDateString('id-ID', {
-                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-                });
-
-                const option = document.createElement("option");
-                option.value = dateObj.toISOString().split('T')[0]; 
-                option.textContent = formatted;                    
-                select.appendChild(option);
-                }
+    const option = document.createElement("option");
+    option.value = dateObj.toISOString().split('T')[0]; 
+    option.textContent = formatted;                    
+    select.appendChild(option);
+  }
 
   const form = document.getElementById('regForm');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     let valid = true;
 
-    // reset error
     document.querySelectorAll('.error').forEach(el => el.style.display='none');
 
-    // Nama
     if (input.value.trim().length < 3) {
       document.getElementById('nameErr').style.display='block';
       valid = false;
     }
 
-    // Email
     const email = document.getElementById('email').value.trim();
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
@@ -193,23 +216,19 @@
       valid = false;
     }
 
-    // Kontak
     const nrp = document.getElementById('NRP').value.trim();
     if (!/^\d{10,12}$/.test(nrp)) {
       document.getElementById('nrpErr').style.display='block';
       valid = false;
     }
 
-    // Tanggal
-    if (document.getElementById('date').value === "") {
+    if (select.value === "") {
       document.getElementById('dateErr').style.display='block';
       valid = false;
     }
 
     if (valid) {
-      alert(`Form berhasil dikirim!\nNama: ${input.value}\nEmail: ${email}\nNRP: ${nrp}`);
-      form.reset();
-      suggestions.innerHTML = '';
+      window.location.href = 'success.html';
     }
   });
 </script>
